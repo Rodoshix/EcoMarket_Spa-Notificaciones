@@ -27,19 +27,21 @@ public class Notificacion {
 
     @NotBlank(message = "El destinatario es obligatorio.")
     @Email(message = "Debe ser un correo electrónico válido.")
+    @Size(max = 100, message = "El correo no debe superar los 100 caracteres.")
     @Column(nullable = false, length = 100)
-    @Schema(description = "Correo electrónico del destinatario", example = "cliente@correo.com")
+    @Schema(description = "Correo electrónico del destinatario", example = "cliente@correo.com", maxLength = 100)
     private String destinatario;
 
     @NotBlank(message = "El mensaje no puede estar vacío.")
     @Size(max = 2000, message = "El mensaje no puede superar los 2000 caracteres.")
     @Column(nullable = false, columnDefinition = "TEXT")
-    @Schema(description = "Contenido del mensaje enviado", example = "Tu pedido ha sido confirmado.")
+    @Schema(description = "Contenido del mensaje enviado", example = "Tu pedido ha sido confirmado.", maxLength = 2000)
     private String mensaje;
 
     @NotBlank(message = "El tipo de notificación es obligatorio.")
+    @Size(max = 30, message = "El tipo de notificación no debe superar los 30 caracteres.")
     @Column(nullable = false, length = 30)
-    @Schema(description = "Tipo de notificación (por ejemplo, email, sms)", example = "email")
+    @Schema(description = "Tipo de notificación (por ejemplo, email, sms)", example = "email", maxLength = 30)
     private String tipo;
 
     @Column(name = "fecha_envio")
